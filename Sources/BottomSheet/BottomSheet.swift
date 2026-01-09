@@ -28,13 +28,25 @@ public struct BottomSheet<HContent: View, MContent: View, V: View>: View {
             // The original view
             self.view
             
-            BottomSheetView(
-                bottomSheetPosition: self.$bottomSheetPosition,
-                headerContent: self.headerContent,
-                mainContent: self.mainContent,
-                switchablePositions: self.switchablePositions,
-                configuration: self.configuration
-            )
+            if #available(iOS 16.0, *) {
+                NavigationStack {
+                    BottomSheetView(
+                        bottomSheetPosition: self.$bottomSheetPosition,
+                        headerContent: self.headerContent,
+                        mainContent: self.mainContent,
+                        switchablePositions: self.switchablePositions,
+                        configuration: self.configuration
+                    )
+                }
+            } else {
+                BottomSheetView(
+                    bottomSheetPosition: self.$bottomSheetPosition,
+                    headerContent: self.headerContent,
+                    mainContent: self.mainContent,
+                    switchablePositions: self.switchablePositions,
+                    configuration: self.configuration
+                )
+            }
         }
     }
     
