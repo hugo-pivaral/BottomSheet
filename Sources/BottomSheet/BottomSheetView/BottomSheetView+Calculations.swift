@@ -68,7 +68,7 @@ internal extension BottomSheetView {
             return self.bottomPositionSafeAreaHeight + self.headerContentHeight + self.dynamicMainContentHeight
         } else {
             // When not dynamic let it take all available space
-            return nil
+            return configuration.customBottomOffset
         }
     }
     
